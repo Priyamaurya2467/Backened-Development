@@ -17,9 +17,10 @@ function Feed() {
 
 
     useEffect(()=>{
-        axios.get("https://loacalhost:3000/posts")
+        axios.get("http://localhost:3000/posts")
         .then((res)=>{
             console.log(res.data)
+            setPosts(res.data.posts || res.data)
         })
     },[])
   return (
@@ -38,6 +39,7 @@ function Feed() {
                 <h1>No posts yet...</h1>
             )
         }
+        
 
 
 
