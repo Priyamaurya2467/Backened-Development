@@ -1,7 +1,0 @@
-const mongoose = require('mongoose')
-
-async function connectDB(){
-    await mongoose.connect("mongodb://yt:c8XXZwvVQnmhbgsY@ac-uyzeuux-shard-00-00.2yadvvv.mongodb.net:27017,ac-uyzeuux-shard-00-01.2yadvvv.mongodb.net:27017,ac-uyzeuux-shard-00-02.2yadvvv.mongodb.net:27017/?ssl=true&replicaSet=atlas-z2sa84-shard-0&authSource=admin&appName=backend");
-}
-
-module.exports = connectDB
