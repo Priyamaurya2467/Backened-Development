@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(cors())
 
 const upload = multer({storage:multer.memoryStorage()})
-app.post('/posts' , async  (req,res)=>{
+app.post('/posts' ,upload.single('image'), async  (req,res)=>{
   
     const result = await uploadFile(req.file.buffer)
     const post = await postModel.create({
@@ -54,6 +54,28 @@ app.post('/posts/:id/comment', async (req, res) => {
   await post.save()
 
   res.json(post)
+})
+
+app.delete('/posts/:id' , async(req,res)=>{
+  try{
+    const id = req.params.id
+    const deletedPost = await postModel.findByIdAndDelete(id)
+
+    if(!deletedPost){
+      return res.status(404).json({
+        message: "Post not found"
+      })
+    }
+    res.status(200).json({
+      message: "Post deleted successfully",
+      post: deletedPost
+    })
+  }catch{
+    res.status(500).json({
+      error:err.message
+    })
+  }
+  
 })
 
 module.exports = app

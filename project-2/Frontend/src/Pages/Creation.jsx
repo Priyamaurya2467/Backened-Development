@@ -1,9 +1,20 @@
 import React from 'react'
-
+import axios from 'axios'
 function Creation() {
 
   const handleSubmitHandler = async(e)=>{
     e.preventDefault()
+    const formData = new FormData(e.target)
+    axios.post("http://localhost:5000/posts",formData)
+    try{
+       await axios.post(
+        "https://localhost:5000/posts",formData
+      )
+      alert("Post created")
+      window.location.reload()
+    }catch(err){
+      console.log(err)
+    }
   }
   return (
     
@@ -23,23 +34,26 @@ function Creation() {
           
           <input
             type="text"
+            name='title'
             placeholder="Title"
             className="w-full border rounded-md p-2"
             required
           />
           <input
             type="text"
+            name='author'
             placeholder="Author"
             className="w-full border rounded-md p-2"
             required
           />
           <textarea
+            name='caption'
             placeholder="Caption"
             className="w-full border rounded-md p-2"
             required
           ></textarea>
 
-          <button className="bg-blue-600 text-white px-6 py-2 rounded-md">
+          <button className="bg-blue-600 text-white px-6 py-2 rounded-md" type='submit'>
             Post
           </button>
         </form>
