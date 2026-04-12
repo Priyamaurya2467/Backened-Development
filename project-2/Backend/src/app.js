@@ -20,15 +20,11 @@ app.post('/posts' ,upload.single('image'), async  (req,res)=>{
         caption: req.body.caption
 
     })
-       
-    
-   
-
-   return res.status(200).json({
+       return res.status(200).json({
         message: "post created successfully",
         post
    })
-})
+})  
 
 app.get('/posts', async (req, res) => {
   try {
@@ -46,14 +42,34 @@ app.get('/posts', async (req, res) => {
 })
 
 
-app.post('/posts/:id/comment', async (req, res) => {
-  const { text } = req.body
-
+app.post('/post/:id/comment', async(req,res)=>{
+  const {text} = req.body
   const post = await postModel.findById(req.params.id)
-  post.comments.push({ text })
-  await post.save()
 
+  post.comments.push({text})
+  await post.save()
   res.json(post)
+})
+
+
+
+app.delete('/posts/:id' , async(req,res)=>{
+  try{
+    const id = req.params.id;
+    const deletedPost = await postModel.findByIdAndDelete(id)
+    if(!deletedPost){
+      return res.status(201).json({
+        message: "Post not deleted"
+      })
+    }
+    res.status(202).json({
+        message: "Post deleted Successfully"
+      })
+    }catch(err){
+      console.log(err)
+    }
+    
+  
 })
 
 app.delete('/posts/:id' , async(req,res)=>{
@@ -75,6 +91,28 @@ app.delete('/posts/:id' , async(req,res)=>{
       error:err.message
     })
   }
+  
+})
+
+app.delete('/post/:id' , async(req,res)=>{
+  try{
+  
+  const id = req.params.id
+  const deletedPost = await postModel.findByIdAndDelete(id)
+  if(!deletedPost){
+    return res.status(201).json({
+      message: "Post Not Deleted"
+    })
+  }
+  res.status(202).json({
+    message: "Post Deleted"
+  })
+}catch(err){
+    console.log(err)
+}
+  
+
+
   
 })
 

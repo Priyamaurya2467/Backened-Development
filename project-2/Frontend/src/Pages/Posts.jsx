@@ -5,7 +5,7 @@ function Posts() {
   const [posts, setPosts] = useState([])
   const [commentText, setCommentText] = useState({})
 
-  // ✅ Fetch posts
+  
   const fetchPosts = async () => {
     try {
       const res = await axios.get("http://localhost:5000/posts")
@@ -19,7 +19,7 @@ function Posts() {
     fetchPosts()
   }, [])
 
-  // ✅ Like handler (safe)
+  
   const handleLike = (id) => {
     setPosts(prev =>
       prev.map(p =>
@@ -27,6 +27,8 @@ function Posts() {
       )
     )
   }
+
+  
 
   
 
