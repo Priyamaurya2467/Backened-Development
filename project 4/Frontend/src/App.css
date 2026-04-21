@@ -1,0 +1,50 @@
+body {
+  font-family: Arial;
+  background: #f5f6fa;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+}
+
+button {
+  padding: 8px 12px;
+  cursor: pointer;
+  background: #5a67d8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.note {
+  background: white;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.tags span {
+  background: #e0e7ff;
+  margin-right: 5px;
+  padding: 3px 6px;
+  border-radius: 5px;
+}

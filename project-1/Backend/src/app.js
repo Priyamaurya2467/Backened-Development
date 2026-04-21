@@ -19,14 +19,11 @@ app.post('/create-post',upload.single("image"), async (req,res)=>{
         image:result.url,
         caption: req.body.caption
     })
-
     return res.status(201).json({
         message: "Post Created Successfully",
         post
     }) //201 : new status code
 })
-
-
 
 app.get('/posts' , async (req,res)=>{
     const posts = await postModel.find()
@@ -34,7 +31,6 @@ app.get('/posts' , async (req,res)=>{
         message:"Post fetched Successfully",
         posts
     })
-
 })
 
 module.exports = app
