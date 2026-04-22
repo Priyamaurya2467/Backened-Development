@@ -1,6 +1,6 @@
 import React from "react";
 
-const API = "http://localhost:5000/api/notes";
+const API = "http://localhost:5000/notes";
 
 function NoteItem({ note, refresh }) {
   const deleteNote = async () => {
@@ -10,12 +10,18 @@ function NoteItem({ note, refresh }) {
     refresh();
   };
 
+    const tagsArray = Array.isArray(note.tags)
+    ? note.tags
+    : typeof note.tags === "string"
+      ? note.tags.split(",").map(tag => tag.trim())
+      : [];
+
   return (
     <div className="note">
       <h3>{note.title}</h3>
       <p>{note.content}</p>
       <div className="tags">
-        {note.tags.map((tag, i) => (
+        {tagsArray.map((tag, i) => (
           <span key={i}>{tag}</span>
         ))}
       </div>
