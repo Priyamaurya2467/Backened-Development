@@ -25,4 +25,4 @@ router.post("/create",(req,res)=>{
 })
 
 
-module.exports
+module.exports= router

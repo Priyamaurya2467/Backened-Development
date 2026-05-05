@@ -10,7 +10,7 @@ async function registerUser(req,res){
 
     const {username , email, password} = req.body;
 
-    console.log("BODY:", req.body);
+    
 
     const isUserAlreadyExists = await userModel.findOne({
         email
@@ -36,7 +36,8 @@ async function registerUser(req,res){
     
     res.status(201).json({
         message: "User registered successfully",
-        user
+        user,
+        
 
     })
 
