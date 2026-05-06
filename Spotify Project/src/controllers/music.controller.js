@@ -34,7 +34,6 @@ async function createMusic(req,res){
 
 }
 
-
 async function createAlbum(req,res) {
    
         const {title,musicIds} = req.body;
@@ -54,7 +53,6 @@ async function createAlbum(req,res) {
   
     
 }
-
 
 async function getAllMusics(req,res){
     const musics = await musicModel.find().populate("artist","username email")
